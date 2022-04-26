@@ -22,8 +22,10 @@ export const toDoSlice = createSlice({
   reducers: {
     addNewToDo: (state, action) => {
       console.log('addNewToDo action:', action);
+      console.log('state:', state);
 
       const newArr = [...state, { isDone: false, value: action.payload }]
+      console.log('newArr:', newArr);
       // save to localStorage arr of todos
       localStorage.setItem('toDo', JSON.stringify(newArr))
       return newArr
@@ -31,8 +33,16 @@ export const toDoSlice = createSlice({
     deleteOne: state => {
       console.log('deleteOne state:', state);
     },
-    changeStatus: state => {
-      console.log('changeStatus state:', state);
+    changeStatus: (state, action) => {
+      const { id, newStatus } = action.payload
+      const newArr = [...state].map((el, index) => {
+        if (index === id) el.isDone = newStatus
+        return el
+      })
+      // upd localStorage
+      localStorage.setItem('toDo', JSON.stringify(newArr))
+      // immer error so dont return
+      //return newArr
     }
   }
 })
