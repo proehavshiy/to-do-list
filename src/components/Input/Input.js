@@ -3,14 +3,21 @@ import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './Input.module.css'
 
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewToDo } from '../../redux/slices/toDoSlice';
+
 const cn = classNames.bind(styles);
 
-function Input({ onSubmit }) {
+function Input() {
+  const dispatch = useDispatch()
+
   return (
     <form name="form" noValidate autoComplete="off"
       onSubmit={(e) => {
         e.preventDefault()
-        onSubmit(e)
+        const newToDoPayload = e.target.children[0].value
+        // update store
+        dispatch(addNewToDo(newToDoPayload))
       }}
     >
       <input id="newTodo" className="new-todo" placeholder="What needs to be done?" />

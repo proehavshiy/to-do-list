@@ -3,11 +3,10 @@ import classNames from 'classnames/bind'
 import styles from './Header.module.css'
 import Button from '../Button/Button';
 import Input from '../Input/Input';
-import { connect } from 'react-redux';
 
 const cn = classNames.bind(styles);
 
-function Header({ arrOfToDoItems, setArrOfToDoItems }) {
+function Header() {
   return (
     <header className="header">
       <h1>todo list</h1>
@@ -18,10 +17,11 @@ function Header({ arrOfToDoItems, setArrOfToDoItems }) {
       />
       <Input
         onSubmit={(e) => {
-          setArrOfToDoItems(() => {
-            return [...arrOfToDoItems, e.target.children[0].value]
-          })
-        }}
+          // setArrOfToDoItems(() => {
+          //   return [...arrOfToDoItems, e.target.children[0].value]
+          // })
+        }
+        }
       />
     </header>
   )

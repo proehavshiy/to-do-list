@@ -4,16 +4,20 @@ import classNames from 'classnames/bind'
 import styles from './TodoListView.module.css'
 import ToDoItem from './ToDoItem/ToDoItem';
 import uniqid from 'uniqid';
+
+import { useSelector } from 'react-redux';
 const cn = classNames.bind(styles);
 
-function TodoListView({ arrOfToDoItems = [] }) {
+function TodoListView() {
+  // get arrOfToDos from redux store
+  const arrayOfToDoItems = useSelector(state => state.toDoArr)
+  console.log('arrayOfToDoItems:', arrayOfToDoItems);
 
-  // const storagedList = JSON.parse(localStorage.getItem('list'))
   return (
     <ul id="todoListView" className="todo-list">
-      {arrOfToDoItems.map((toDo, i) => (
+      {arrayOfToDoItems.map((toDo, i) => (
         <ToDoItem
-          name={toDo}
+          name={toDo.value}
           id={i}
           key={uniqid()}
         />

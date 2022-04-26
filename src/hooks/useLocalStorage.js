@@ -2,8 +2,13 @@ import { useState, useEffect } from "react"
 
 export const useLocalStorage = (key, defaultValue) => {
   const [state, setState] = useState(() => {
-    const toParse = localStorage.getItem(key) || defaultValue
-    return JSON.parse(toParse)
+    let result;
+    if (localStorage.getItem(key)) {
+      result = JSON.parse(localStorage.getItem(key))
+    } else {
+      result = defaultValue
+    }
+    return result
   })
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(state))
