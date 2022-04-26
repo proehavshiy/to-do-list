@@ -1,5 +1,5 @@
 
-import React, { createRef } from 'react'
+import React, { createRef, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './Input.module.css'
 
@@ -12,11 +12,12 @@ function Input() {
   const dispatch = useDispatch()
   const inputRef = createRef(null)
 
+  const [inputVal, setInputVal] = useState('')
+
   return (
     <form name="form" noValidate autoComplete="off"
       onSubmit={(e) => {
         e.preventDefault()
-        // const newToDoPayload = e.target.children[0].value
         const newToDoPayload = inputRef.current.value
         // update store
         dispatch(addNewToDo(newToDoPayload))
@@ -24,7 +25,14 @@ function Input() {
         inputRef.current.value = ''
       }}
     >
-      <input id="newTodo" className="new-todo" placeholder="What needs to be done?" ref={inputRef} />
+      <input id="newTodo"
+        className="new-todo"
+        placeholder="What needs to be done?"
+        type="text"
+        value={inputVal}
+        onChange={(e) => setInputVal(e.target.value)}
+        ref={inputRef}
+      />
     </form>
   )
 }

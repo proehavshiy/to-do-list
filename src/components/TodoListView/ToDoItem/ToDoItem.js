@@ -8,7 +8,7 @@ function ToDoItem({ name, id }) {
     <li className="todoItem">
       <input type="checkbox" className="itemList" id={id} />
       <label value={name} className="labelContent">{name}</label>
-      <input id={id} className="edit" value={name} type="text" />
+      <input id={id} className="edit" defaultValue={name} type="text" />
       <button className="remove" id={id}></button>
     </li>
   )
