@@ -9,6 +9,7 @@ const initToDos = () => {
   } else {
     result = [{
       isDone: false,
+      isEditing: false,
       value: 'initial ToDo'
     }]
   }
@@ -24,7 +25,7 @@ export const toDoSlice = createSlice({
       console.log('addNewToDo action:', action);
       console.log('state:', state);
 
-      const newArr = [...state, { isDone: false, value: action.payload }]
+      const newArr = [...state, { isDone: false, isEditing: false, value: action.payload }]
       console.log('newArr:', newArr);
       // save to localStorage arr of todos
       localStorage.setItem('toDo', JSON.stringify(newArr))
@@ -68,9 +69,36 @@ export const toDoSlice = createSlice({
       localStorage.setItem('toDo', JSON.stringify(newArr))
       // immer error so dont return
       //return newArr
+    },
+    changeValue: (state, action) => {
+
+    },
+    changeEditingStatus: (state, action) => {
+      // console.log('act:', action);
+      const { id, changeAll = false } = action.payload
+      let newArr;
+      switch (changeAll) {
+        case false:
+          newArr = [...state].map((el, index) => {
+            if (index === id) el.isEditing = !el.isEditing
+            return el
+          })
+          break
+        case true:
+          newArr = [...state].map((el) => {
+            el.isEditing = false
+            return el
+          })
+          break
+        default:
+          newArr = state
+      }
+
+      localStorage.setItem('toDo', JSON.stringify(newArr))
+      // return newArr
     }
   }
 })
 
-export const { addNewToDo, deleteToDo, changeStatus } = toDoSlice.actions
+export const { addNewToDo, deleteToDo, changeStatus, changeValue, changeEditingStatus } = toDoSlice.actions
 export default toDoSlice.reducer
