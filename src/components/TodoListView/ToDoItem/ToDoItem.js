@@ -9,24 +9,14 @@ function ToDoItem({ name, id }) {
   const isDone = useSelector((state) => state.toDoArr[id].isDone)
   const dispatch = useDispatch()
 
-  function handleCheck(e) {
-    dispatch(changeStatus({
-      id,
-      newStatus: !isDone,
-    }))
-  }
-
-  function handleDelete(e) {
-    dispatch(deleteToDo({
-      id
-    }))
-  }
+  const handleCheckBox = () => dispatch(changeStatus({ id }))
+  const handleDelete = () => dispatch(deleteToDo({ id }))
 
   return (
     <li className="todoItem">
       <input
         type="checkbox"
-        onChange={handleCheck}
+        onChange={handleCheckBox}
         checked={isDone}
         className="itemList"
       />

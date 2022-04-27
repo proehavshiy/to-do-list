@@ -10,8 +10,8 @@ const cn = classNames.bind(styles);
 
 function Input() {
   const dispatch = useDispatch()
-  const inputRef = createRef(null)
 
+  const inputRef = createRef(null)
   const [inputVal, setInputVal] = useState('')
 
   return (

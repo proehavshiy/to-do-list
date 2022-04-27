@@ -37,11 +37,33 @@ export const toDoSlice = createSlice({
       return newArr
     },
     changeStatus: (state, action) => {
-      const { id, newStatus } = action.payload
-      const newArr = [...state].map((el, index) => {
-        if (index === id) el.isDone = newStatus
-        return el
-      })
+      const { id, changeAll = false } = action.payload
+      let newArr;
+      switch (changeAll) {
+        case false:
+          // change status of a current single ToDo
+          newArr = [...state].map((el, index) => {
+            if (index === id) el.isDone = !el.isDone
+            return el
+          })
+          break
+        case true:
+          // change statuses of all ToDos
+          const checkStatuses = state.every((el) => el.isDone === true)
+          checkStatuses
+            ? newArr = [...state].map((el) => {
+              el.isDone = false
+              return el
+            })
+            : newArr = [...state].map((el) => {
+              el.isDone = true
+              return el
+            })
+          break
+        default:
+          newArr = state
+      }
+
       // upd localStorage
       localStorage.setItem('toDo', JSON.stringify(newArr))
       // immer error so dont return
