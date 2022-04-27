@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import styles from './ToDoItem.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { changeStatus } from '../../../redux/slices/toDoSlice';
+import { changeStatus, deleteToDo } from '../../../redux/slices/toDoSlice';
 
 const cn = classNames.bind(styles);
 
@@ -16,17 +16,26 @@ function ToDoItem({ name, id }) {
     }))
   }
 
+  function handleDelete(e) {
+    dispatch(deleteToDo({
+      id
+    }))
+  }
+
   return (
     <li className="todoItem">
-      <input type="checkbox"
+      <input
+        type="checkbox"
         onChange={handleCheck}
         checked={isDone}
         className="itemList"
-        id={id}
       />
       <label value={name} className="labelContent">{name}</label>
-      <input id={id} className="edit" defaultValue={name} type="text" />
-      <button className="remove" id={id}></button>
+      <input className="edit" defaultValue={name} type="text" />
+      <button
+        className="remove"
+        onClick={handleDelete}
+      />
     </li>
   )
 }

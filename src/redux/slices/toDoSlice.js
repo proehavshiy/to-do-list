@@ -30,8 +30,11 @@ export const toDoSlice = createSlice({
       localStorage.setItem('toDo', JSON.stringify(newArr))
       return newArr
     },
-    deleteOne: state => {
-      console.log('deleteOne state:', state);
+    deleteToDo: (state, { payload: { id } }) => {
+      // filter add and delete the toDo
+      const newArr = [...state].filter((_, index) => index !== id)
+      localStorage.setItem('toDo', JSON.stringify(newArr))
+      return newArr
     },
     changeStatus: (state, action) => {
       const { id, newStatus } = action.payload
@@ -47,5 +50,5 @@ export const toDoSlice = createSlice({
   }
 })
 
-export const { addNewToDo, deleteOne, changeStatus } = toDoSlice.actions
+export const { addNewToDo, deleteToDo, changeStatus } = toDoSlice.actions
 export default toDoSlice.reducer
