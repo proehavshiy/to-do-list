@@ -21,18 +21,23 @@ export const toDoSlice = createSlice({
   initialState: initToDos(),
   reducers: {
     addNewToDo: (state, action) => {
-      console.log('addNewToDo action:', action);
-      console.log('state:', state);
-
-      const newArr = [...state, { isDone: false, isEditing: false, value: action.payload }]
-      console.log('newArr:', newArr);
+      const newArr = [...state, {
+        isDone: false,
+        isEditing: false,
+        value: action.payload
+      }]
       // save to localStorage arr of todos
       localStorage.setItem('toDo', JSON.stringify(newArr))
       return newArr
     },
-    deleteToDo: (state, { payload: { id } }) => {
-      // filter add and delete the toDo
-      const newArr = [...state].filter((_, index) => index !== id)
+    deleteToDo: (state, action) => {
+      const { id, deleteAll = false } = action.payload
+      // delete all ToDos or current toDo
+      let newArr;
+      deleteAll
+        ? newArr = []
+        : newArr = [...state].filter((_, index) => index !== id)
+
       localStorage.setItem('toDo', JSON.stringify(newArr))
       return newArr
     },
