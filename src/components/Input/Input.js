@@ -19,10 +19,13 @@ function Input() {
       onSubmit={(e) => {
         e.preventDefault()
         const newToDoPayload = inputRef.current.value
-        // update store
-        dispatch(addNewToDo(newToDoPayload))
-        // clear input at the end
-        inputRef.current.value = ''
+        // update store in case of not empty input
+        if (newToDoPayload !== '') {
+          dispatch(addNewToDo(newToDoPayload))
+          // clear input after that
+          inputRef.current.value = ''
+        }
+
       }}
     >
       <input id="newTodo"
