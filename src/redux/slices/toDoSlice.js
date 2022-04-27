@@ -71,10 +71,15 @@ export const toDoSlice = createSlice({
       //return newArr
     },
     changeValue: (state, action) => {
-
+      const { id, newValue } = action.payload
+      const newArr = [...state].map((el, index) => {
+        if (index === id) el.value = newValue
+        return el
+      })
+      localStorage.setItem('toDo', JSON.stringify(newArr))
+      // return newArr
     },
-    changeEditingStatus: (state, action) => {
-      // console.log('act:', action);
+    changeEditingMode: (state, action) => {
       const { id, changeAll = false } = action.payload
       let newArr;
       switch (changeAll) {
@@ -100,5 +105,5 @@ export const toDoSlice = createSlice({
   }
 })
 
-export const { addNewToDo, deleteToDo, changeStatus, changeValue, changeEditingStatus } = toDoSlice.actions
+export const { addNewToDo, deleteToDo, changeStatus, changeValue, changeEditingMode } = toDoSlice.actions
 export default toDoSlice.reducer

@@ -3,7 +3,7 @@ import './App.css';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import TodoListView from './components/TodoListView/TodoListView';
-import { changeEditingStatus } from './redux/slices/toDoSlice';
+import { changeEditingMode } from './redux/slices/toDoSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     const closeToDoEditingMode = (e) => {
       // if click event is out of the ToDo editing input change isEditing status to false in all ToDos
       if (e.target.id !== "editInput") {
-        dispatch(changeEditingStatus({ changeAll: true }))
+        dispatch(changeEditingMode({ changeAll: true }))
       }
     }
     window.addEventListener('click', closeToDoEditingMode)

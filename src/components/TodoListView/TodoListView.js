@@ -11,7 +11,6 @@ const cn = classNames.bind(styles);
 function TodoListView() {
   // get arrOfToDos from redux store
   const arrayOfToDoItems = useSelector(state => state.toDoArr)
-  console.log('arrayOfToDoItems:', arrayOfToDoItems);
 
   return (
     <ul id="todoListView" className="todo-list">

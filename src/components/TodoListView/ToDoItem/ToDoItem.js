@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind'
 import styles from './ToDoItem.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { changeStatus, deleteToDo, changeEditingStatus } from '../../../redux/slices/toDoSlice';
+import { changeStatus, deleteToDo, changeValue, changeEditingMode } from '../../../redux/slices/toDoSlice';
 
 const cn = classNames.bind(styles);
 
@@ -11,21 +11,40 @@ function ToDoItem({ name, id }) {
 
   const handleCheckBox = () => dispatch(changeStatus({ id }))
   const handleDelete = () => dispatch(deleteToDo({ id }))
-  const handleDoubleClick = () => dispatch(changeEditingStatus({ id }))
+  const handleDoubleClick = () => dispatch(changeEditingMode({ id }))
+  const handleChangeValue = (e) => {
+    // by pressing Enter renew a value of ToDo
+    if (e.keyCode === 13) {
+      dispatch(changeValue({
+        id,
+        newValue: e.target.value
+      }))
+      // and close editingMode
+      dispatch(changeEditingMode({ id }))
+    }
+  }
 
   return (
-    <li className={cn('todoItem', { editing: toDo.isEditing })}
+    <li
+      className={cn('todoItem', { editing: toDo.isEditing })}
     >
       <input
+        className="itemList"
         type="checkbox"
         onChange={handleCheckBox}
         checked={toDo.isDone}
-        className="itemList"
       />
-      <label value={name} className="labelContent"
+      <label
+        className="labelContent"
+        value={name}
         onDoubleClick={handleDoubleClick}
       >{name}</label>
-      <input className="edit" id="editInput" defaultValue={name} type="text" />
+      <input className="edit"
+        id="editInput"
+        type="text"
+        defaultValue={name}
+        onKeyUp={handleChangeValue}
+      />
       <button
         className="remove"
         onClick={handleDelete}
