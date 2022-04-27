@@ -16,7 +16,6 @@ const initToDos = () => {
   return result
 }
 
-
 export const toDoSlice = createSlice({
   name: 'toDoArr',
   initialState: initToDos(),
@@ -98,6 +97,7 @@ export const toDoSlice = createSlice({
         default:
           newArr = state
       }
+
 
       localStorage.setItem('toDo', JSON.stringify(newArr))
       // return newArr
