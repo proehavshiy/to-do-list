@@ -6,6 +6,8 @@ import classNames from 'classnames/bind';
 // redux
 import { useDispatch } from 'react-redux';
 import { addNewToDo } from '../../redux/slices/toDoSlice';
+// constants
+import { INPUT_PLACEHOLDER } from '../../constants/constants';
 
 const cn = classNames.bind(styles);
 
@@ -31,7 +33,7 @@ function Input() {
     >
       <input
         className={cn('new-todo')}
-        placeholder="What needs to be done?"
+        placeholder={INPUT_PLACEHOLDER}
         type="text"
         value={inputVal}
         onChange={(e) => setInputVal(e.target.value)}

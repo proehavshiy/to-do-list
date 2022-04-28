@@ -8,6 +8,8 @@ import Input from '../Input/Input';
 // redux
 import { useDispatch } from 'react-redux';
 import { changeStatus } from '../../redux/slices/toDoSlice';
+// constants
+import { HEADER_TEXT } from '../../constants/constants';
 
 const cn = classNames.bind(styles);
 
@@ -20,7 +22,7 @@ function Header() {
 
   return (
     <header className={cn('header')}>
-      <h1>todo list</h1>
+      <h1>{HEADER_TEXT}</h1>
       <Button
         style='toggle-all'
         handleClick={handleToggleAllBtn}

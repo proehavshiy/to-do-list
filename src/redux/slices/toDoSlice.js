@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
+// constants
+import { LSNAME_TODO } from "../../constants/constants";
+//others
 import uniqid from 'uniqid';
 
 // get initial arr of todo from localStorage if it exists
 // otherwise set default todo for demonstration
 const initToDos = () => {
   let result;
-  if (localStorage.getItem('toDo')) {
-    result = JSON.parse(localStorage.getItem('toDo'))
+  if (localStorage.getItem(LSNAME_TODO)) {
+    result = JSON.parse(localStorage.getItem(LSNAME_TODO))
   } else {
     result = [{
       id: uniqid(),
@@ -20,7 +23,7 @@ const initToDos = () => {
 }
 
 export const toDoSlice = createSlice({
-  name: 'toDoArr',
+  name: LSNAME_TODO,
   initialState: initToDos(),
   reducers: {
     addNewToDo: (state, action) => {
@@ -32,7 +35,7 @@ export const toDoSlice = createSlice({
         value: action.payload
       }]
       // save to localStorage arr of todos
-      localStorage.setItem('toDo', JSON.stringify(newArr))
+      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
       return newArr
     },
     deleteToDo: (state, action) => {
@@ -43,7 +46,7 @@ export const toDoSlice = createSlice({
         ? newArr = []
         : newArr = [...state].filter((el) => el.id !== id)
 
-      localStorage.setItem('toDo', JSON.stringify(newArr))
+      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
       return newArr
     },
     changeStatus: (state, action) => {
@@ -75,7 +78,7 @@ export const toDoSlice = createSlice({
       }
 
       // upd localStorage
-      localStorage.setItem('toDo', JSON.stringify(newArr))
+      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
       // immer error so dont return
       //return newArr
     },
@@ -85,7 +88,7 @@ export const toDoSlice = createSlice({
         if (el.id === id) el.value = newValue
         return el
       })
-      localStorage.setItem('toDo', JSON.stringify(newArr))
+      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
       // return newArr
     },
     changeEditingMode: (state, action) => {
@@ -109,7 +112,7 @@ export const toDoSlice = createSlice({
       }
 
 
-      localStorage.setItem('toDo', JSON.stringify(newArr))
+      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
       // return newArr
     },
     displayAll: (state, action) => {
@@ -118,7 +121,7 @@ export const toDoSlice = createSlice({
         return el
       })
 
-      localStorage.setItem('toDo', JSON.stringify(newArr))
+      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
       // return newArr
     },
     displayActive: (state, action) => {
@@ -131,7 +134,7 @@ export const toDoSlice = createSlice({
         return el
       })
 
-      localStorage.setItem('toDo', JSON.stringify(newArr))
+      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
       // return newArr
     },
     displayCompleted: (state, action) => {
@@ -144,7 +147,7 @@ export const toDoSlice = createSlice({
         return el
       })
 
-      localStorage.setItem('toDo', JSON.stringify(newArr))
+      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
       // return newArr
     }
   }

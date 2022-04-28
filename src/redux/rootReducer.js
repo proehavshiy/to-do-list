@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sliceToDoReducer from './slices/toDoSlice';
 import sliceFilterReducer from './slices/filterSlice';
+import { LSNAME_TODO, LSNAME_FILTER } from "../constants/constants";
 
 const store = configureStore({
   reducer: {
-    toDoArr: sliceToDoReducer,
-    toDoFilter: sliceFilterReducer,
+    [LSNAME_TODO]: sliceToDoReducer,
+    [LSNAME_FILTER]: sliceFilterReducer,
   }
 })
 

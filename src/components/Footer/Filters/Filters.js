@@ -13,13 +13,14 @@ import { setFilterStatus } from '../../../redux/slices/filterSlice';
 import {
   FILTERSTATUS_ALL, FILTERSTATUS_ACTIVE, FILTERSTATUS_COMPLETED,
   BUTTON_FILTER_ALL, BUTTON_FILTER_ACTIVE, BUTTON_FILTER_COMPLETED, BUTTON_FILTER_CLEARALL,
+  LSNAME_FILTER
 } from '../../../constants/constants';
 
 const cn = classNames.bind(styles);
 
 function Filters() {
   const dispatch = useDispatch()
-  const filterStatus = useSelector(state => state.toDoFilter.currentStatus)
+  const filterStatus = useSelector(state => state[LSNAME_FILTER].currentStatus)
 
   const handleDisplayAll = () => {
     dispatch(displayAll())

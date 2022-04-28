@@ -9,13 +9,14 @@ import ToDoItem from './ToDoItem/ToDoItem';
 import { useSelector } from 'react-redux';
 // other
 import uniqid from 'uniqid';
+// constants
+import { LSNAME_TODO } from '../../constants/constants';
 
 const cn = classNames.bind(styles);
 
 function TodoListView() {
   // get arrOfToDos from redux store
-  const arrayOfToDoItems = useSelector(state => state.toDoArr)
-
+  const arrayOfToDoItems = useSelector(state => state[LSNAME_TODO])
   return (
     <ul className={cn('todo-list')}>
       {arrayOfToDoItems.map((toDo) => (
