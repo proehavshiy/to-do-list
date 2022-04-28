@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import uniqid from 'uniqid';
 
 // get initial arr of todo from localStorage if it exists
 // otherwise set default todo for demonstration
@@ -8,7 +9,9 @@ const initToDos = () => {
     result = JSON.parse(localStorage.getItem('toDo'))
   } else {
     result = [{
+      id: uniqid(),
       isDone: false,
+      isDisplay: true,
       isEditing: false,
       value: 'initial ToDo'
     }]
@@ -22,7 +25,9 @@ export const toDoSlice = createSlice({
   reducers: {
     addNewToDo: (state, action) => {
       const newArr = [...state, {
+        id: uniqid(),
         isDone: false,
+        isDisplay: true,
         isEditing: false,
         value: action.payload
       }]
@@ -36,7 +41,7 @@ export const toDoSlice = createSlice({
       let newArr;
       deleteAll
         ? newArr = []
-        : newArr = [...state].filter((_, index) => index !== id)
+        : newArr = [...state].filter((el) => el.id !== id)
 
       localStorage.setItem('toDo', JSON.stringify(newArr))
       return newArr
@@ -47,8 +52,8 @@ export const toDoSlice = createSlice({
       switch (changeAll) {
         case false:
           // change status of a current single ToDo
-          newArr = [...state].map((el, index) => {
-            if (index === id) el.isDone = !el.isDone
+          newArr = [...state].map((el) => {
+            if (el.id === id) el.isDone = !el.isDone
             return el
           })
           break
@@ -76,8 +81,8 @@ export const toDoSlice = createSlice({
     },
     changeValue: (state, action) => {
       const { id, newValue } = action.payload
-      const newArr = [...state].map((el, index) => {
-        if (index === id) el.value = newValue
+      const newArr = [...state].map((el) => {
+        if (el.id === id) el.value = newValue
         return el
       })
       localStorage.setItem('toDo', JSON.stringify(newArr))
@@ -88,8 +93,8 @@ export const toDoSlice = createSlice({
       let newArr;
       switch (changeAll) {
         case false:
-          newArr = [...state].map((el, index) => {
-            if (index === id) el.isEditing = !el.isEditing
+          newArr = [...state].map((el) => {
+            if (el.id === id) el.isEditing = !el.isEditing
             return el
           })
           break
@@ -106,9 +111,44 @@ export const toDoSlice = createSlice({
 
       localStorage.setItem('toDo', JSON.stringify(newArr))
       // return newArr
+    },
+    displayAll: (state, action) => {
+      const newArr = [...state].map((el) => {
+        el.isDisplay = true
+        return el
+      })
+
+      localStorage.setItem('toDo', JSON.stringify(newArr))
+      // return newArr
+    },
+    displayActive: (state, action) => {
+      const newArr = [...state].map((el) => {
+        if (!el.isDone) {
+          el.isDisplay = true
+        } else {
+          el.isDisplay = false
+        }
+        return el
+      })
+
+      localStorage.setItem('toDo', JSON.stringify(newArr))
+      // return newArr
+    },
+    displayCompleted: (state, action) => {
+      const newArr = [...state].map((el) => {
+        if (el.isDone) {
+          el.isDisplay = true
+        } else {
+          el.isDisplay = false
+        }
+        return el
+      })
+
+      localStorage.setItem('toDo', JSON.stringify(newArr))
+      // return newArr
     }
   }
 })
 
-export const { addNewToDo, deleteToDo, changeStatus, changeValue, changeEditingMode } = toDoSlice.actions
+export const { addNewToDo, deleteToDo, changeStatus, changeValue, changeEditingMode, displayAll, displayActive, displayCompleted } = toDoSlice.actions
 export default toDoSlice.reducer

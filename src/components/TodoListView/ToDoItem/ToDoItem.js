@@ -5,16 +5,16 @@ import { changeStatus, deleteToDo, changeValue, changeEditingMode } from '../../
 
 const cn = classNames.bind(styles);
 
-function ToDoItem({ name, id }) {
-  const toDo = useSelector((state) => state.toDoArr[id])
+function ToDoItem({ name, id, isDisplay }) {
+  const toDo = useSelector((state) => state.toDoArr.find((el) => el.id === id))
   const dispatch = useDispatch()
 
   const handleCheckBox = () => dispatch(changeStatus({ id }))
   const handleDelete = () => dispatch(deleteToDo({ id }))
   const handleDoubleClick = () => dispatch(changeEditingMode({ id }))
   const handleChangeValue = (e) => {
-    // by pressing Enter renew a value of ToDo
-    if (e.keyCode === 13) {
+    // by pressing Enter renew a value of ToDo in case of not empty input value
+    if (e.keyCode === 13 && e.target.value !== '') {
       dispatch(changeValue({
         id,
         newValue: e.target.value
@@ -27,6 +27,7 @@ function ToDoItem({ name, id }) {
   return (
     <li
       className={cn('todoItem', { editing: toDo.isEditing })}
+      style={{ display: isDisplay ? 'block' : 'none' }}
     >
       <input
         className="itemList"
