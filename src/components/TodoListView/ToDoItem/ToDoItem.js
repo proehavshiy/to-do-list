@@ -1,12 +1,18 @@
-import classNames from 'classnames/bind'
-import styles from './ToDoItem.module.css'
-import { useSelector, useDispatch } from 'react-redux';
+
+import React from 'react';
+// styles
+import styles from './ToDoItem.module.css';
+import classNames from 'classnames/bind';
+// redux
+import { useDispatch } from 'react-redux';
 import { changeStatus, deleteToDo, changeValue, changeEditingMode } from '../../../redux/slices/toDoSlice';
+// constants
+import { EDIT_INPUT_ID, SUMBIT_KEYCODE } from '../../../constants/constants';
 
 const cn = classNames.bind(styles);
 
-function ToDoItem({ name, id, isDisplay }) {
-  const toDo = useSelector((state) => state.toDoArr.find((el) => el.id === id))
+function ToDoItem({ toDo }) {
+  const { id, value, isDisplay } = toDo
   const dispatch = useDispatch()
 
   const handleCheckBox = () => dispatch(changeStatus({ id }))
@@ -14,7 +20,7 @@ function ToDoItem({ name, id, isDisplay }) {
   const handleDoubleClick = () => dispatch(changeEditingMode({ id }))
   const handleChangeValue = (e) => {
     // by pressing Enter renew a value of ToDo in case of not empty input value
-    if (e.keyCode === 13 && e.target.value !== '') {
+    if (e.keyCode === SUMBIT_KEYCODE && e.target.value !== '') {
       dispatch(changeValue({
         id,
         newValue: e.target.value
@@ -30,28 +36,28 @@ function ToDoItem({ name, id, isDisplay }) {
       style={{ display: isDisplay ? 'block' : 'none' }}
     >
       <input
-        className="itemList"
+        className={cn('itemCheckBox')}
         type="checkbox"
         onChange={handleCheckBox}
         checked={toDo.isDone}
       />
       <label
-        className="labelContent"
-        value={name}
+        className={cn('labelContent')}
+        value={value}
         onDoubleClick={handleDoubleClick}
-      >{name}</label>
-      <input className="edit"
-        id="editInput"
+      >{value}</label>
+      <input className={cn('edit')}
+        id={EDIT_INPUT_ID}
         type="text"
-        defaultValue={name}
+        defaultValue={value}
         onKeyUp={handleChangeValue}
       />
       <button
-        className="remove"
+        className={cn('remove')}
         onClick={handleDelete}
       />
     </li>
   )
 }
 
-export default ToDoItem
+export default ToDoItem;

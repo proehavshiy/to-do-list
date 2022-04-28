@@ -1,11 +1,14 @@
 
-import React from 'react'
-import classNames from 'classnames/bind'
-import styles from './TodoListView.module.css'
+import React from 'react';
+// styles
+import styles from './TodoListView.module.css';
+import classNames from 'classnames/bind';
+// components
 import ToDoItem from './ToDoItem/ToDoItem';
-import uniqid from 'uniqid';
-
+// redux
 import { useSelector } from 'react-redux';
+// other
+import uniqid from 'uniqid';
 
 const cn = classNames.bind(styles);
 
@@ -14,12 +17,10 @@ function TodoListView() {
   const arrayOfToDoItems = useSelector(state => state.toDoArr)
 
   return (
-    <ul id="todoListView" className="todo-list">
+    <ul className={cn('todo-list')}>
       {arrayOfToDoItems.map((toDo) => (
         <ToDoItem
-          name={toDo.value}
-          id={toDo.id}
-          isDisplay={toDo.isDisplay}
+          toDo={toDo}
           key={uniqid()}
         />
       ))}

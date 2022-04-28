@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 // styles
-import styles from './Filters.module.css'
-import classNames from 'classnames/bind'
+import styles from './Filters.module.css';
+import classNames from 'classnames/bind';
 // components
 import Button from '../../Button/Button';
 // redux

@@ -1,7 +1,10 @@
-import React from 'react'
-import classNames from 'classnames/bind'
-import styles from './Counter.module.css'
+import React from 'react';
+// styles
+import styles from './Counter.module.css';
+import classNames from 'classnames/bind';
+// redux
 import { useSelector } from 'react-redux';
+
 const cn = classNames.bind(styles);
 
 function Counter() {
@@ -11,12 +14,12 @@ function Counter() {
   }, 0))
 
   return (
-    <span className="todo-count">
-      <strong id="todoCount">
+    <span className={cn('todo-count')}>
+      <strong>
         {toDosLeft}
       </strong> item left
     </span>
   )
 }
 
-export default Counter
+export default Counter;

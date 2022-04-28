@@ -1,0 +1,129 @@
+/* li container */
+.todoItem {
+  position: relative;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+}
+
+.todoItem:last-child {
+  border-bottom: none;
+}
+
+/* checkbox */
+.itemCheckBox {
+  text-align: center;
+  height: 20px;
+  /* auto, since non-WebKit browsers doesn't support input styling */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  cursor: pointer;
+  visibility: hidden;
+  margin-left: 20px;
+}
+
+.itemCheckBox:after {
+  border: 1px solid #166B94;
+  border-radius: 3px;
+  color: #fff;
+  content: "";
+  display: block;
+  height: 16px;
+  line-height: 16px;
+  position: absolute;
+  text-align: center;
+  visibility: visible;
+  width: 16px;
+}
+
+.itemCheckBox:checked:after {
+  border: 1px solid #979797;
+  color: #979797;
+  content: "✓";
+  font-size: 25px;
+  color: green;
+}
+
+/* todo value */
+.labelContent {
+  white-space: pre-line;
+  word-break: break-all;
+  padding: 15px 60px 15px 15px;
+  margin-left: 45px;
+  display: block;
+  line-height: 1.2;
+  transition: color 0.4s;
+  cursor: pointer;
+}
+
+.itemCheckBox:checked+.labelContent {
+  color: #979797;
+  font-weight: normal;
+  text-decoration: line-through;
+}
+
+/* input edit */
+.edit {
+  display: none;
+  position: relative;
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  border: 0;
+  outline: none;
+  padding: 6px;
+  border: 1px solid #999;
+  box-shadow: inset 0 -1px 5px 0 rgb(0 0 0 / 20%);
+  box-sizing: border-box;
+}
+
+/* remove button */
+.remove {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 30px;
+  color: #cc9a9a;
+  margin-bottom: 11px;
+  transition: color 0.2s ease-out;
+  cursor: pointer;
+}
+
+.todoItem:hover>.remove {
+  display: block;
+}
+
+.remove:hover {
+  color: #af5b5e;
+}
+
+.remove:after {
+  content: '×';
+}
+
+/* editing mode */
+.editing {
+  display: block;
+  width: 430px;
+}
+
+.editing>.labelContent {
+  display: none;
+}
+
+.editing>.edit {
+  display: block;
+  width: 506px;
+  padding: 13px 17px 12px 17px;
+  margin: 0 0 0 43px;
+}
+
+.todoItem:hover.editing>.remove {
+  display: none;
+}

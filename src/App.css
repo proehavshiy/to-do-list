@@ -121,7 +121,7 @@ label[for='toggle-all'] {
   -webkit-appearance: none;
 }
 
-.todo-list {
+/* .todo-list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -172,14 +172,14 @@ label[for='toggle-all'] {
   text-align: center;
   height: 20px;
   /* auto, since non-WebKit browsers doesn't support input styling */
-  position: absolute;
+/* position: absolute;
   top: 0;
   bottom: 0;
-  margin: auto 0;
+  margin: auto 0; */
 
-}
+/* } */
 
-.todo-list li label {
+/* .todo-list li label {
   white-space: pre-line;
   word-break: break-all;
   padding: 15px 60px 15px 15px;
@@ -188,9 +188,9 @@ label[for='toggle-all'] {
   line-height: 1.2;
   transition: color 0.4s;
   cursor: pointer;
-}
+} */
 
-.todo-list input[type=checkbox] {
+/* .todo-list input[type=checkbox] {
   cursor: pointer;
   visibility: hidden;
   margin-left: 20px;
@@ -216,10 +216,10 @@ label[for='toggle-all'] {
   content: "✓";
   font-size: 25px;
   color: green;
-}
+} */
 
 
-.todo-list input[type=checkbox]:checked+label {
+/* .todo-list input[type=checkbox]:checked+label {
   color: #979797;
   font-weight: normal;
   text-decoration: line-through;
@@ -239,9 +239,9 @@ label[for='toggle-all'] {
   margin-bottom: 11px;
   transition: color 0.2s ease-out;
   cursor: pointer;
-}
+} */
 
-.todo-list li .remove:hover {
+/* .todo-list li .remove:hover {
   color: #af5b5e;
 }
 
@@ -251,10 +251,10 @@ label[for='toggle-all'] {
 
 .todo-list li:hover .remove {
   display: block;
-}
+} */
 
 
-.edit {
+/* .edit {
   display: none;
 }
 
@@ -273,30 +273,30 @@ li.editing>input.edit {
 
 li:hover.editing>button.remove {
   display: none;
-}
+} */
 
-.todo-list li.editing .edit {
+/* .todo-list li.editing .edit {
   display: block;
   width: 506px;
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px;
-}
+} */
 
 .show-all {
   display: block;
 }
 
-.todo-list li.editing:last-child {
+/* .todo-list li.editing:last-child {
   margin-bottom: -1px;
-}
+} */
 
-.footer {
+/* .footer {
   color: #777;
   padding: 10px 15px;
   height: 20px;
   text-align: center;
   border-top: 1px solid #e6e6e6;
-}
+} */
 
 /* .footer:before {
   content: '';
@@ -313,10 +313,10 @@ li:hover.editing>button.remove {
     0 17px 2px -6px rgba(0, 0, 0, 0.2);
 } */
 
-.todo-count {
+/* .todo-count {
   float: left;
   text-align: left;
-}
+} */
 
 /* .filters {
   margin: 0;

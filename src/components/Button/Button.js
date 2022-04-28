@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 // styles
-import classNames from 'classnames/bind'
-import styles from './Button.module.css'
+import classNames from 'classnames/bind';
+import styles from './Button.module.css';
 
 const cn = classNames.bind(styles);
 
@@ -17,4 +17,4 @@ function Button({ style, type = 'button', text, isSelected = false, handleClick 
   )
 }
 
-export default Button
+export default Button;
