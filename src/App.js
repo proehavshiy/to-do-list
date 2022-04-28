@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
-import './App.css';
-import Footer from './components/Footer/Footer';
+// styles
+import styles from './App.module.css';
+import classNames from 'classnames/bind';
+// components
 import Header from './components/Header/Header';
 import TodoListView from './components/TodoListView/TodoListView';
+import Footer from './components/Footer/Footer';
+// redux
 import { changeEditingMode } from './redux/slices/toDoSlice';
 import { useDispatch } from 'react-redux';
-
 // constants
 import { EDIT_INPUT_ID } from './constants/constants';
+
+const cn = classNames.bind(styles);
 
 function App() {
   const dispatch = useDispatch()
@@ -24,18 +29,16 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <section className="todoapp">
-        <Header />
-        <section id="main">
-          <TodoListView />
-        </section>
-        <Footer />
-      </section>
+    <div className={cn('app')}>
+      <Header />
+      <main>
+        <TodoListView />
+      </main>
+      <Footer />
     </div>
   );
 }
 
 
 
-export default (App);
+export default App;
