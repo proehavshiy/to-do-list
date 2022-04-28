@@ -1,0 +1,16 @@
+.filters {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.filters li {
+  cursor: pointer;
+}
+
+.filters li>.selected {
+  border-color: rgba(175, 47, 47, 0.2);
+}
