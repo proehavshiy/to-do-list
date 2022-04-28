@@ -8,6 +8,10 @@ button {
   cursor: pointer;
 }
 
+.selected {
+  border-color: rgba(175, 47, 47, 0.2);
+}
+
 .toggle-all:before {
   content: '❯';
   font-size: 22px;
