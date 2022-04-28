@@ -5,23 +5,31 @@ import Button from '../../Button/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteToDo } from '../../../redux/slices/toDoSlice';
 import { displayAll, displayActive, displayCompleted } from '../../../redux/slices/toDoSlice';
+import { setFilterStatus } from '../../../redux/slices/filterSlice';
 const cn = classNames.bind(styles);
 
 function Filters() {
   const dispatch = useDispatch()
-  const ArrToFilter = useSelector((state) => state.toDoArr)
-  console.log('ArrToFilter:', ArrToFilter);
+  const filterStatus = useSelector(state => state.toDoFilter.currentStatus)
+
+  const FILTERSTATUS_ALL = 'all'
+  const FILTERSTATUS_ACTIVE = 'active'
+  const FILTERSTATUS_COMPLETED = 'completed'
 
 
-  const handleShowAll = () => dispatch(displayAll())
-  const handleShowActive = () => dispatch(displayActive())
-  const handleShowCompleted = () => dispatch(displayCompleted())
+  const handleShowAll = () => {
+    dispatch(displayAll())
+    dispatch(setFilterStatus(FILTERSTATUS_ALL))
+  }
+  const handleShowActive = () => {
+    dispatch(displayActive())
+    dispatch(setFilterStatus(FILTERSTATUS_ACTIVE))
+  }
+  const handleShowCompleted = () => {
+    dispatch(displayCompleted())
+    dispatch(setFilterStatus(FILTERSTATUS_COMPLETED))
+  }
   const handleDeleteAll = () => dispatch(deleteToDo({ deleteAll: true }))
-
-  // const handleShowAll = () => dispatch(all(ArrToFilter))
-  // const handleShowActive = () => dispatch(active(ArrToFilter))
-  // const handleShowCompleted = () => dispatch(completed(ArrToFilter))
-  // const handleDeleteAll = () => dispatch(deleteToDo({ deleteAll: true }))
 
   return (
     <ul className="filters">
@@ -29,7 +37,7 @@ function Filters() {
         <Button
           id="allWorks"
           text="All"
-          isSelected
+          isSelected={filterStatus === FILTERSTATUS_ALL}
           handleClick={handleShowAll}
         />
       </li>
@@ -37,6 +45,7 @@ function Filters() {
         <Button
           id="activedItems"
           text="Active"
+          isSelected={filterStatus === FILTERSTATUS_ACTIVE}
           handleClick={handleShowActive}
         />
       </li>
@@ -44,6 +53,7 @@ function Filters() {
         <Button
           id="completedTodos"
           text="Completed"
+          isSelected={filterStatus === FILTERSTATUS_COMPLETED}
           handleClick={handleShowCompleted}
         />
       </li>
