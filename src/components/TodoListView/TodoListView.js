@@ -28,4 +28,4 @@ function TodoListView() {
   )
 }
 
-export default TodoListView
+export default TodoListView;

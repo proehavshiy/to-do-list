@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import sliceToDoReducer from './slices/toDoSlice'
-import sliceFilterReducer from './slices/filterSlice'
+import sliceToDoReducer from './slices/toDoSlice';
+import sliceFilterReducer from './slices/filterSlice';
 
 const store = configureStore({
   reducer: {
@@ -9,4 +9,4 @@ const store = configureStore({
   }
 })
 
-export default store
+export default store;

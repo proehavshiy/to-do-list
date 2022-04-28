@@ -1,9 +1,10 @@
 
-import React, { createRef, useState } from 'react'
-import classNames from 'classnames/bind'
-import styles from './Input.module.css'
-
-import { useDispatch, useSelector } from 'react-redux';
+import React, { createRef, useState } from 'react';
+// styles
+import styles from './Input.module.css';
+import classNames from 'classnames/bind';
+// redux
+import { useDispatch } from 'react-redux';
 import { addNewToDo } from '../../redux/slices/toDoSlice';
 
 const cn = classNames.bind(styles);
@@ -15,7 +16,7 @@ function Input() {
   const [inputVal, setInputVal] = useState('')
 
   return (
-    <form name="form" noValidate autoComplete="off"
+    <form className={cn('form')} name="form" noValidate autoComplete="off"
       onSubmit={(e) => {
         e.preventDefault()
         const newToDoPayload = inputRef.current.value
@@ -28,8 +29,8 @@ function Input() {
 
       }}
     >
-      <input id="newTodo"
-        className="new-todo"
+      <input
+        className={cn('new-todo')}
         placeholder="What needs to be done?"
         type="text"
         value={inputVal}
@@ -40,4 +41,4 @@ function Input() {
   )
 }
 
-export default Input
+export default Input;
