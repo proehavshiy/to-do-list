@@ -1,30 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 // constants
 import { LSNAME_TODO } from "../../constants/constants";
+// utils
+import { manageLocalStorage } from "../../utils/manageLocalStorage";
+import { initState } from "../../utils/initState";
 //others
 import uniqid from 'uniqid';
 
-// get initial arr of todo from localStorage if it exists
-// otherwise set default todo for demonstration
-const initToDos = () => {
-  let result;
-  if (localStorage.getItem(LSNAME_TODO)) {
-    result = JSON.parse(localStorage.getItem(LSNAME_TODO))
-  } else {
-    result = [{
-      id: uniqid(),
-      isDone: false,
-      isDisplay: true,
-      isEditing: false,
-      value: 'initial ToDo'
-    }]
-  }
-  return result
-}
-
 export const toDoSlice = createSlice({
   name: LSNAME_TODO,
-  initialState: initToDos(),
+  initialState: initState(LSNAME_TODO),
   reducers: {
     addNewToDo: (state, action) => {
       const newArr = [...state, {
@@ -35,7 +20,7 @@ export const toDoSlice = createSlice({
         value: action.payload
       }]
       // save to localStorage arr of todos
-      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
+      manageLocalStorage(LSNAME_TODO, 'set', newArr)
       return newArr
     },
     deleteToDo: (state, action) => {
@@ -45,8 +30,8 @@ export const toDoSlice = createSlice({
       deleteAll
         ? newArr = []
         : newArr = [...state].filter((el) => el.id !== id)
-
-      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
+      // save to localStorage arr of todos
+      manageLocalStorage(LSNAME_TODO, 'set', newArr)
       return newArr
     },
     changeStatus: (state, action) => {
@@ -78,7 +63,7 @@ export const toDoSlice = createSlice({
       }
 
       // upd localStorage
-      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
+      manageLocalStorage(LSNAME_TODO, 'set', newArr)
       // immer error so dont return
       //return newArr
     },
@@ -88,7 +73,7 @@ export const toDoSlice = createSlice({
         if (el.id === id) el.value = newValue
         return el
       })
-      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
+      manageLocalStorage(LSNAME_TODO, 'set', newArr)
       // return newArr
     },
     changeEditingMode: (state, action) => {
@@ -111,8 +96,7 @@ export const toDoSlice = createSlice({
           newArr = state
       }
 
-
-      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
+      manageLocalStorage(LSNAME_TODO, 'set', newArr)
       // return newArr
     },
     displayAll: (state, action) => {
@@ -121,7 +105,7 @@ export const toDoSlice = createSlice({
         return el
       })
 
-      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
+      manageLocalStorage(LSNAME_TODO, 'set', newArr)
       // return newArr
     },
     displayActive: (state, action) => {
@@ -134,7 +118,7 @@ export const toDoSlice = createSlice({
         return el
       })
 
-      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
+      manageLocalStorage(LSNAME_TODO, 'set', newArr)
       // return newArr
     },
     displayCompleted: (state, action) => {
@@ -147,7 +131,7 @@ export const toDoSlice = createSlice({
         return el
       })
 
-      localStorage.setItem(LSNAME_TODO, JSON.stringify(newArr))
+      manageLocalStorage(LSNAME_TODO, 'set', newArr)
       // return newArr
     }
   }

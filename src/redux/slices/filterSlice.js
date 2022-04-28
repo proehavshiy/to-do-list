@@ -1,22 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 // constants
 import { LSNAME_FILTER } from "../../constants/constants";
-
-const initFilterStatus = () => {
-  let result;
-  if (localStorage.getItem(LSNAME_FILTER)) {
-    result = JSON.parse(localStorage.getItem(LSNAME_FILTER))
-  } else {
-    result = {
-      currentStatus: 'all'
-    }
-  }
-  return result
-}
+// utils
+import { manageLocalStorage } from "../../utils/manageLocalStorage";
+import { initState } from "../../utils/initState";
 
 export const filterSlice = createSlice({
   name: LSNAME_FILTER,
-  initialState: initFilterStatus(),
+  initialState: initState(LSNAME_FILTER),
   reducers: {
     setFilterStatus: (state, { payload }) => {
       const updState = {
@@ -24,7 +15,7 @@ export const filterSlice = createSlice({
         currentStatus: payload,
       }
       // save to localStorage arr of todos
-      localStorage.setItem(LSNAME_FILTER, JSON.stringify(updState))
+      manageLocalStorage(LSNAME_FILTER, 'set', updState)
       return updState
     },
   }
