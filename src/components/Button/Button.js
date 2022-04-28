@@ -5,10 +5,11 @@ import styles from './Button.module.css';
 
 const cn = classNames.bind(styles);
 
-function Button({ style, type = 'button', text, isSelected = false, handleClick }) {
+function Button({ style, id, type = 'button', text, isSelected = false, handleClick }) {
   return (
     <button
       className={cn(style, { selected: isSelected })}
+      id={id}
       type={type}
       onClick={handleClick}
     >

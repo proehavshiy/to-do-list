@@ -1,8 +1,11 @@
-import React from 'react'
-import classNames from 'classnames/bind'
-import styles from './Header.module.css'
+import React from 'react';
+// styles
+import styles from './Header.module.css';
+import classNames from 'classnames/bind';
+// components
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+// redux
 import { useDispatch } from 'react-redux';
 import { changeStatus } from '../../redux/slices/toDoSlice';
 
@@ -12,17 +15,14 @@ function Header() {
   const dispatch = useDispatch()
 
   function handleToggleAllBtn() {
-    dispatch(changeStatus({
-      changeAll: true
-    }))
+    dispatch(changeStatus({ changeAll: true }))
   }
 
   return (
-    <header className="header">
+    <header className={cn('header')}>
       <h1>todo list</h1>
       <Button
-        style="toggle-all"
-        id="toggleInputAll"
+        style='toggle-all'
         handleClick={handleToggleAllBtn}
       />
       <Input />
