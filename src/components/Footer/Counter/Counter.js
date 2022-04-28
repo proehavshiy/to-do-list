@@ -5,11 +5,17 @@ import { useSelector } from 'react-redux';
 const cn = classNames.bind(styles);
 
 function Counter() {
-  const amountOfToDos = useSelector((state) => state.toDoArr.length)
+  const toDosLeft = useSelector((state) => state.toDoArr.reduce((acc, curr) => {
+    curr.isDone === false && acc++
+    return acc
+  }, 0))
 
   return (
     <span className="todo-count">
-      <strong id="todoCount">{amountOfToDos}</strong> item left</span>
+      <strong id="todoCount">
+        {toDosLeft}
+      </strong> item left
+    </span>
   )
 }
 
