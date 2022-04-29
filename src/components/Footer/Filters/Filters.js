@@ -34,7 +34,7 @@ function Filters() {
     dispatch(displayCompleted())
     dispatch(setFilterStatus(FILTERSTATUS_COMPLETED))
   }
-  const handleDeleteAll = () => dispatch(deleteToDo({ deleteAll: true }))
+  const handleDeleteAll = () => dispatch(deleteToDo({ deleteCompleted: true }))
 
   return (
     <ul className={cn('filters')}>
