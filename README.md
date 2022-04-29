@@ -12,6 +12,7 @@ React app with redux store. Frontend and logic are separated from each other.
 - [x] clear all completed items
 - [x] filters `all`, `active`, `completed`
 - [x] counter of open items
+- [x] set all user path to `localStorage` for better UX
 
 ## Reference
 * [vanila JS reference](https://codepen.io/hanhttm/pen/WjBdbz)
