@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 import Input from '../Input/Input';
 // redux
 import { useDispatch } from 'react-redux';
-import { changeStatus } from '../../redux/slices/toDoSlice';
+import { changeStatus } from '../../redux/slices/toDoSlice/toDoSlice';
 // constants
 import { HEADER_TEXT } from '../../constants/constants';
 

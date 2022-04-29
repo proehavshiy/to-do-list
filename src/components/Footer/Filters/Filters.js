@@ -6,9 +6,9 @@ import classNames from 'classnames/bind';
 import Button from '../../Button/Button';
 // redux
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteToDo } from '../../../redux/slices/toDoSlice';
-import { displayAll, displayActive, displayCompleted } from '../../../redux/slices/toDoSlice';
-import { setFilterStatus } from '../../../redux/slices/filterSlice';
+import { deleteToDo } from '../../../redux/slices/toDoSlice/toDoSlice';
+import { displayAll, displayActive, displayCompleted } from '../../../redux/slices/toDoSlice/toDoSlice';
+import { setFilterStatus } from '../../../redux/slices/filterSlice/filterSlice';
 // constants
 import {
   FILTERSTATUS_ALL, FILTERSTATUS_ACTIVE, FILTERSTATUS_COMPLETED,

@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import sliceToDoReducer from './slices/toDoSlice';
-import sliceFilterReducer from './slices/filterSlice';
+// reducers
+import sliceToDoReducer from './slices/toDoSlice/toDoSlice';
+import sliceFilterReducer from './slices/filterSlice/filterSlice';
+// constants
 import { LSNAME_TODO, LSNAME_FILTER } from "../constants/constants";
 
 const store = configureStore({

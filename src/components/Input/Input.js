@@ -5,7 +5,7 @@ import styles from './Input.module.css';
 import classNames from 'classnames/bind';
 // redux
 import { useDispatch } from 'react-redux';
-import { addNewToDo } from '../../redux/slices/toDoSlice';
+import { addNewToDo } from '../../redux/slices/toDoSlice/toDoSlice';
 // constants
 import { INPUT_PLACEHOLDER } from '../../constants/constants';
 

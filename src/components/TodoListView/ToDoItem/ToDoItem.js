@@ -5,7 +5,7 @@ import styles from './ToDoItem.module.css';
 import classNames from 'classnames/bind';
 // redux
 import { useDispatch } from 'react-redux';
-import { changeStatus, deleteToDo, changeValue, changeEditingMode } from '../../../redux/slices/toDoSlice';
+import { changeStatus, deleteToDo, changeValue, changeEditingMode } from '../../../redux/slices/toDoSlice/toDoSlice';
 // constants
 import { EDIT_INPUT_ID, SUMBIT_KEYCODE } from '../../../constants/constants';
 

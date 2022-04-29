@@ -7,7 +7,7 @@ import Header from './components/Header/Header';
 import TodoListView from './components/TodoListView/TodoListView';
 import Footer from './components/Footer/Footer';
 // redux
-import { changeEditingMode } from './redux/slices/toDoSlice';
+import { changeEditingMode } from './redux/slices/toDoSlice/toDoSlice';
 import { useDispatch } from 'react-redux';
 // constants
 import { EDIT_INPUT_ID } from './constants/constants';

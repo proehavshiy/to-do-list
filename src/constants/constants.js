@@ -25,17 +25,26 @@ export const SUMBIT_KEYCODE = 13;
 export const LSNAME_TODO = 'toDo';
 export const LSNAME_FILTER = 'filterToDo';
 
+// preset for data
+export const DATA_PRESET = (value) => {
+  return {
+    id: uniqid(),
+    isDone: false,
+    isDisplay: true,
+    isEditing: false,
+    value
+  }
+}
+
 // initial states
+export const INITIAL_PRESET_TODO = [DATA_PRESET('initial ToDo')]
+
 export const INITIAL_PRESET_FILTER = {
   currentStatus: 'all'
 }
 
-export const INITIAL_PRESET_TODO = [{
-  id: uniqid(),
-  isDone: false,
-  isDisplay: true,
-  isEditing: false,
-  value: 'initial ToDo'
-}]
+
+
+
 
 
