@@ -29,7 +29,7 @@ function App() {
   }, [])
 
   return (
-    <div className={cn('app')}>
+    <div className={cn('app')} data-testid='app'>
       <Header />
       <main>
         <TodoListView />

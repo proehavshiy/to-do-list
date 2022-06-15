@@ -18,7 +18,7 @@ function TodoListView() {
   // get arrOfToDos from redux store
   const arrayOfToDoItems = useSelector(state => state[LSNAME_TODO])
   return (
-    <ul className={cn('todo-list')}>
+    <ul className={cn('todo-list')} data-testid='todo-list'>
       {arrayOfToDoItems.map((toDo) => (
         <ToDoItem
           toDo={toDo}
