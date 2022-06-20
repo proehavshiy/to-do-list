@@ -16,7 +16,7 @@ describe('Counter', () => {
     const amountOfUndoneTodos = getState().toDo.reduce((acc, curr) => {
       curr.isDone === false && acc++
       return acc
-    }, 0)
-    expect(Number(CounterEl.textContent)).toBe(amountOfUndoneTodos)
+    }, 0);
+    expect(Number(CounterEl.textContent)).toBe(amountOfUndoneTodos);
   })
 })

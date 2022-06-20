@@ -15,7 +15,30 @@ import { displayCompletedReducer } from "./reducers/displayCompletedReducer";
 
 export const toDoSlice = createSlice({
   name: LSNAME_TODO,
-  initialState: initState(LSNAME_TODO),
+  // initialState: initState(LSNAME_TODO),
+  initialState: [
+    {
+      id: 1,
+      isDone: false,
+      isDisplay: true,
+      isEditing: false,
+      value: '111'
+    },
+    {
+      id: 2,
+      isDone: true,
+      isDisplay: true,
+      isEditing: false,
+      value: '222'
+    },
+    {
+      id: 3,
+      isDone: false,
+      isDisplay: true,
+      isEditing: false,
+      value: '333'
+    },
+  ],
   reducers: {
     addNewToDo: addNewToDoReducer,
     deleteToDo: deleteToDoReducer,

@@ -38,28 +38,29 @@ function Filters() {
 
   return (
     <ul className={cn('filters')}>
-      <li>
+      <li data-testid='all'>
         <Button
           text={BUTTON_FILTER_ALL}
           isSelected={filterStatus === FILTERSTATUS_ALL}
           handleClick={handleDisplayAll}
+
         />
       </li>
-      <li>
+      <li data-testid='active'>
         <Button
           text={BUTTON_FILTER_ACTIVE}
           isSelected={filterStatus === FILTERSTATUS_ACTIVE}
           handleClick={handleDisplayActive}
         />
       </li>
-      <li>
+      <li data-testid='completed'>
         <Button
           text={BUTTON_FILTER_COMPLETED}
           isSelected={filterStatus === FILTERSTATUS_COMPLETED}
           handleClick={handleDisplayCompleted}
         />
       </li>
-      <li>
+      <li data-testid='deleteCompleted'>
         <Button
           text={BUTTON_FILTER_CLEARALL}
           handleClick={handleDeleteAll}
