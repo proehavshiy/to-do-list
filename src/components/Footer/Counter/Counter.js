@@ -17,7 +17,7 @@ function Counter() {
 
   return (
     <span className={cn('todo-count')}>
-      <strong>
+      <strong data-testid='counter'>
         {toDosLeft}
       </strong> item left
     </span>
