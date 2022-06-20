@@ -5,11 +5,13 @@ import sliceFilterReducer from './slices/filterSlice/filterSlice';
 // constants
 import { LSNAME_TODO, LSNAME_FILTER } from "../constants/constants";
 
+export const rootReducer = {
+  [LSNAME_TODO]: sliceToDoReducer,
+  [LSNAME_FILTER]: sliceFilterReducer,
+}
+
 const store = configureStore({
-  reducer: {
-    [LSNAME_TODO]: sliceToDoReducer,
-    [LSNAME_FILTER]: sliceFilterReducer,
-  }
+  reducer: rootReducer,
 })
 
 export default store;

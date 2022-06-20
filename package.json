@@ -43,6 +43,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.17.12",
     "gh-pages": "^3.2.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
   }
 }
