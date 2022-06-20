@@ -24,7 +24,6 @@ function Header() {
     <header className={cn('header')} data-testid='header'>
       <h1>{HEADER_TEXT}</h1>
       <Button
-        data-testid='toggle'
         style='toggle-all'
         handleClick={handleToggleAllBtn}
       />
