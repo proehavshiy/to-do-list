@@ -3,16 +3,15 @@ import userEvent from '@testing-library/user-event';
 import { renderWithRedux } from '../../utils/testUtils/renderWithRedux';
 import Header from './Header';
 
-
-// мок редакса
-
 describe('Header', () => {
   test('click on button toggle all todos status', () => {
     const { store } = renderWithRedux(<Header />)
     const getState = store.getState;
 
     const ButtonEl = screen.getByRole('button')
+    const FormEl = screen.getByRole('form')
     expect(ButtonEl).toBeInTheDocument();
+    expect(FormEl).toBeInTheDocument();
 
     // переключает все тудушки в статус "выполнены"
     userEvent.click(ButtonEl)
