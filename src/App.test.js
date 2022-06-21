@@ -1,31 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import { useSelector, useDispatch } from 'react-redux';
+import { screen } from '@testing-library/react';
 import App from './App';
+import { renderWithRedux } from './utils/testUtils/renderWithRedux';
 
-
-// мок редакса
-jest.mock("react-redux", () => ({
-  // ...jest.requireActual("react-redux"),
-  useSelector: jest.fn(),
-  useDispatch: jest.fn()
-}));
 
 describe('App', () => {
-  // beforeEach(() => {
-  //   useSelector.mockImplementation(callback => {
-  //     return callback(mockAppState);
-  //   });
-  // });
-  // afterEach(() => {
-  //   useSelector.mockClear();
-  // });
-
-  test('rendering App', () => {
-    render(<App />);
+  test('App rendering', () => {
+    renderWithRedux(<App />);
     const AppEl = screen.getByTestId('app');
     expect(AppEl).toBeInTheDocument();
   });
-
-})
-
-
+});
