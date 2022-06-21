@@ -40,12 +40,16 @@ function ToDoItem({ toDo }) {
         type="checkbox"
         onChange={handleCheckBox}
         checked={toDo.isDone}
+        data-testid="checkbox"
       />
       <label
         className={cn('labelContent')}
         value={value}
         onDoubleClick={handleDoubleClick}
-      >{value}</label>
+        data-testid="label"
+      >
+        {value}
+      </label>
       <input className={cn('edit')}
         id={EDIT_INPUT_ID}
         type="text"
@@ -55,6 +59,7 @@ function ToDoItem({ toDo }) {
       <button
         className={cn('remove')}
         onClick={handleDelete}
+        data-testid="removeBtn"
       />
     </li>
   )
